@@ -226,27 +226,28 @@ def init_db():
 
 def log_call(caller_number, transcript, audio_score, transcript_score,
              caller_score, final_risk_score, tier, matched_categories):
-    """Transcript is encrypted before storage only decrypted when displayed."""
-    conn = sqlite3.connect(DB_PATH)
-    conn.execute(
-        """
-        INSERT INTO call_log
-        
-        """,
-        (
-            datetime.now(timezone.utc).isoformat(),
-            caller_number,
-            encrypt_text(transcript),
-            audio_score,
-            transcript_score,
-            caller_score,
-            final_risk_score,
-            tier,
-            ", ".join(matched_categories),
-        ),
+    """Transcript is encrypted before storage - only decrypted when displayed."""
+    sql = ("INSERT INTO call_log "
+           "(timestamp, caller_number, transcript, audio_score, transcript_score, "
+           "caller_score, final_risk_score, tier, matched_categories) "
+           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+    values = (
+        datetime.now(timezone.utc).isoformat(),
+        caller_number,
+        encrypt_text(transcript),
+        audio_score,
+        transcript_score,
+        caller_score,
+        final_risk_score,
+        tier,
+        ", ".join(matched_categories),
     )
-    conn.commit()
-    conn.close()
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        conn.execute(sql, values)
+        conn.commit()
+    finally:
+        conn.close()
 
 
 def load_calls() -> pd.DataFrame:
