@@ -1,0 +1,33 @@
+@"
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets (never upload the encryption key)
+*.key
+.env
+
+# Personal recordings and large model files
+*.m4a
+*.mp4
+*.wav
+*.ckpt
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+"@ | Set-Content -Encoding utf8 .gitignore
+
+@"
+
+# Added: key, logs, second venv, test recordings
+.encryption_key
+venv/
+src/dashboard/call_log.db
+data/test_calls/
+tests/fixtures/test_caller_reputation.db
+"@ | Add-Content -Encoding utf8 .gitignore

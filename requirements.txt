@@ -1,0 +1,10 @@
+torch>=2.0
+transformers>=4.35
+soundfile
+faster-whisper
+scikit-learn
+pandas
+numpy
+streamlit
+cryptography
+plotly
