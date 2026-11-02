@@ -35,5 +35,5 @@ python -m pytest tests -v
 - Not evaluated: ablation of fused versus single signals; real-voice behaviour.
 
 ## Authors
-Rupesh Deuja, Aryan Bipinkumar Patel, Joyane Wanuyu Wamae, Prachi Mahendrabhai Joshi, Dheiryan Hitesh Bhesaniya
+Rupesh Deuja, Aryan Bipinkumar Patel, Joyane Wamuyu Wamae, Prachi Mahendrabhai Joshi, Dheiryan Hitesh Bhesaniya
 "@ | Set-Content README.md -Encoding utf8
